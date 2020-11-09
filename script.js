@@ -13,35 +13,17 @@ document.getElementById("currentDay").innerHTML = d + ", " + m + " " + dt
 
 function initial() {
     for (var i = 0; i < workHours.length; i++) {
-      $('.container').append("<div class='row'><div id='time-block' class='time-block col-2'><h3 class='hour'>" + workHours[i] + "</h3></div><textarea class='description col-8'></textarea><button class='saveBtn col-2'></button></<div>");
-    
-    //   $('.row').append("<div id='time-block' class='time-block col-2'><h3 class='hour'>" + workHours[i] + "</h3></div>");
-    //   $('.time-block').append("<h3 class='hour'>" + workHours[i] + "</h3>")
-    //   $('.row').append("<textarea class='description col-8'></textarea>");
-    //   $('.row').append("<button class='saveBtn col-2'></button>");
+      $('.container').append("<div class='row'><div id='time-block' class='time-block col-2'><h3 class='hour'>" + workHours[i] + "</h3></div><textarea class='description col-8'></textarea><button class='saveBtn Btn" + i + " col-2'>Save</button></<div>");
     }
-}
- 
-// function initial(){
-//     for (var i = 0; i < workHours.length; i++) {
-//         $(".container").append("<div class='row'></<div>");
-//     }  
-//         $(".row").append("<div id='time-block' class='time-block col-2'><textarea class='userText col-12'></textarea></div>")
-//         $(".time-block").append("<h3 class='hour'></h3>")
-//         $(".row").append ("<textarea class='description col-8'></textarea>")
-//         $(".row").append("<button class='saveBtn col-2'></button>")
-//     }
-
-function next(){
-    var description = document.querySelector(".description")
+        var description = document.querySelector(".description")
         var hour = document.querySelector(".hour")
-        var userText = document.querySelector(".userText")
         $(".saveBtn").on("click", function()   {
-            localStorage.setItem(userText.value, JSON.stringify(description.value))
-            console.log(description.value);
-            console.log(hour.textContent)
-})
+        localStorage.setItem(hour.value, JSON.stringify(description.value))
+        console.log(description.value);
+        console.log(hour.textContent)
+        console.log("Btn0")
+});
+localStorage.getItem(workHours[i])
 }
 var description = JSON.parse(localStorage.getItem("hello"))
 initial()
-next()
