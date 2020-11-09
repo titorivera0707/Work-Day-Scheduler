@@ -14,4 +14,4 @@
 
 ### Screenshots
 
-*![Basic Screen](.)
+*![Basic Screen](./images/Pic1.png)
