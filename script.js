@@ -8,18 +8,29 @@ var months = ["January", "February", "March", "April", "May", "June", "July", "A
 var d = (days[day]);
 var m = (months[month]);
 var dt = date
-workHours = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"]
+var workHours = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"]
 document.getElementById("currentDay").innerHTML = d + ", " + m + " " + dt 
 
-function initial(){
-    for (var i = 0; i < 9; i++) {
-        $(".container").append("<div class='row'></<div>");
-    }  
-        $(".row").append("<div id='time-block' class='time-block col-2'><textarea class='userText col-12'></textarea></div>")
-        $(".time-block").append("<h3 class='hour'></h3>")
-        $(".row").append ("<textarea class='description col-8'></textarea>")
-        $(".row").append("<button class='saveBtn col-2'></button>")
+function initial() {
+    for (var i = 0; i < workHours.length; i++) {
+      $('.container').append("<div class='row'><div id='time-block' class='time-block col-2'><h3 class='hour'>" + workHours[i] + "</h3></div><textarea class='description col-8'></textarea><button class='saveBtn col-2'></button></<div>");
+    
+    //   $('.row').append("<div id='time-block' class='time-block col-2'><h3 class='hour'>" + workHours[i] + "</h3></div>");
+    //   $('.time-block').append("<h3 class='hour'>" + workHours[i] + "</h3>")
+    //   $('.row').append("<textarea class='description col-8'></textarea>");
+    //   $('.row').append("<button class='saveBtn col-2'></button>");
     }
+}
+ 
+// function initial(){
+//     for (var i = 0; i < workHours.length; i++) {
+//         $(".container").append("<div class='row'></<div>");
+//     }  
+//         $(".row").append("<div id='time-block' class='time-block col-2'><textarea class='userText col-12'></textarea></div>")
+//         $(".time-block").append("<h3 class='hour'></h3>")
+//         $(".row").append ("<textarea class='description col-8'></textarea>")
+//         $(".row").append("<button class='saveBtn col-2'></button>")
+//     }
 
 function next(){
     var description = document.querySelector(".description")
@@ -33,3 +44,4 @@ function next(){
 }
 var description = JSON.parse(localStorage.getItem("hello"))
 initial()
+next()
