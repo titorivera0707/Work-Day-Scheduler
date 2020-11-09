@@ -8,43 +8,27 @@ var months = ["January", "February", "March", "April", "May", "June", "July", "A
 var d = (days[day]);
 var m = (months[month]);
 var dt = date
+workHours = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"]
 document.getElementById("currentDay").innerHTML = d + ", " + m + " " + dt 
-
 function initial(){
     for (var i = 0; i < 9; i++) {
-    
         $(".container").append("<div class='row'></<div>");
     }  
-        // var number = 0
-        // for (var i = 0; i < 5; i++) {
-        // number++
-        //}
-        $(".row").append("<div id='time-block' class='time-block col-2'></div>")
-        $(".time-block").append("<h3 class='hour" + i + "'"+ "></h3>")
+        $(".row").append("<div id='time-block' class='time-block col-2'><textarea class='userText'></textarea></div>")
+        $(".time-block").append("<h3 class='hour'></h3>")
         $(".row").append ("<textarea class='description col-8'></textarea>")
         $(".row").append("<button class='saveBtn col-2'></button>")
-        var time = document.querySelector(".hour");
-        var description = document.querySelector(".description");
+        // document.querySelector(".hour").innerHTML = "hello"
         var description = document.querySelector(".description")
-        var time = document.querySelector(".time-block")
-        $(".saveBtn").on("click", function() {
-            console.log(time.textContent)
-            console.log(description.value)
-            console.log("hello")
-            localStorage.setItem(time.textContent, JSON.stringify(description.value));
+        var hour = document.querySelector(".hour")
+        var userText = document.querySelector(".userText")
+        $(".saveBtn").on("click", function()   {
+            localStorage.setItem(userText.value, JSON.stringify(description.value))
+            console.log(description.value);
+            console.log(hour.textContent)
+
     })
-        var time = JSON.parse(localStorage.getItem("hello"))
 }
 
-
-
-var description = document.querySelector(".description")
-
-var time = document.querySelector(".time-block")
-$(".saveBtn").on("click", function() {
-    console.log(time.textContent)
-    console.log(description.value)
-    console.log("hello" )
-    localStorage.setItem(time.textContent, JSON.stringify(description.value));
-})
+var description = JSON.parse(localStorage.getItem("hello"))
 initial()
