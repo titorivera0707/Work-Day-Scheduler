@@ -1,5 +1,6 @@
 var today =  new Date();
 var hours = today.getHours();
+var minutes = today.getMinutes();
 var day = today.getDay();
 var date = today.getDate();
 var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday","Friday", "Saturday"];
@@ -9,106 +10,53 @@ var d = (days[day]);
 var m = (months[month]);
 var dt = date
 var workHours = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"]
+var militaryHours = [9, 10, 11, 12, 13, 14, 15, 16, 17]
 document.getElementById("currentDay").innerHTML = d + ", " + m + " " + dt 
-console.log(hours)
-console.log(9)
 function initial() {
     for (var i = 0; i < workHours.length; i++) {
-      $('.container').append("<div class='row'><div id='time-block' class='time-block col-2'><h3 class='hour hr" + i + "'>" + workHours[i] + "</h3></div><textarea class='description dscrptn" + i + " col-8'></textarea><button class='saveBtn Btn" + i + " col-2'>Save</button></<div>");
+      $('.container').append("<div id=" + workHours[i] + " class='row'><div id='time-block' class='time-block col-2'><h3 class='hour hr" + i + "'>" + workHours[i] + "</h3></div><textarea class='description dscrptn" + i + " col-8'></textarea><button class='saveBtn Btn" + i + " col-2'>Save</button></<div>");
     }
-        var description = document.querySelector(".description")
-        var hour = document.querySelector(".hour")
-        if (JSON.parse(localStorage.getItem(description.value))){
-            $description.textContent(JSON.parse(localStorage.getItem(description.value)))
-        }
-        if (hours < "9"){
-        $(".dscrptn0").addClass("future")
-        }
-        if (hours > "9"){
-        $(".dscrptn0").addClass("past")
-        }
-        else{
-        $(".dscrptn0").addClass("present")
-        }
-        if (hours < "10"){
-        $(".dscrptn1").addClass("future")
-        }
-        if (hours > "10"){
-        $(".dscrptn1").addClass("past")
+        if (localStorage.length > 0){
+            for (var i = 0; i < workHours.length; i++) {
+                var locstrg = localStorage.getItem(workHours[i])
+            console.log(locstrg)
+            var row = $("#" + workHours[i])
+            row.children().eq(1).text(JSON.parse(locstrg))
             }
-        else{
-        $(".dscrptn1").addClass("present")
         }
-        if (hours < "11"){
-        $(".dscrptn2").addClass("future")
-        }
-        if (hours > "11"){
-        $(".dscrptn2").addClass("past")
-        }
-        else{
-        $(".dscrptn2").addClass("present")
-        }
-        if (hours < "12"){
-        $(".dscrptn3").addClass("future")
-        }
-        if (hours > "12"){
-        $(".dscrptn3").addClass("past")
+
+        console.log(hours)
+        for(i = 0; i < militaryHours.length; i++){
+            if (hours < militaryHours[i]) {
+            var row = $("#" + workHours[i])
+            row.children().eq(1).addClass("future")
             }
-        else{
-        $(".dscrptn3").addClass("present")
+            else if (hours > militaryHours[i]) {
+                var row = $("#" + workHours[i])
+                row.children().eq(1).addClass("past")
+                }
+            else if (hours === militaryHours[i]) {
+                var row = $("#" + workHours[i])
+                row.children().eq(1).addClass("present")
+                }
         }
-        if (hours < "13"){
-        $(".dscrptn4").addClass("future")
-        }
-        if (hours > "13"){
-        $(".dscrptn4").addClass("past")
-        }
-        else{
-        $(".dscrptn4").addClass("present")
-        }
-        if (hours < "14"){
-        $(".dscrptn5").addClass("future")
-        }
-        if (hours > "14"){
-        $(".dscrptn5").addClass("past")
-            }
-        else{
-        $(".dscrptn5").addClass("present")
-        }
-        if (hours < "15"){
-        $(".dscrptn6").addClass("future")
-        }
-        if (hours > "15"){
-        $(".dscrptn6").addClass("past")
-        }
-        else{
-        $(".dscrptn6").addClass("present")
-        }
-        if (hours < "16"){
-        $(".dscrptn7").addClass("future")
-        }
-        if (hours > "16"){
-        $(".dscrptn7").addClass("past")
-            }
-        else{
-        $(".dscrptn7").addClass("present")
-        }
-        if (hours < "17"){
-        $(".dscrptn8").addClass("future")
-        }
-        if (hours > "17"){
-        $(".dscrptn8").addClass("past")
-        }
-        else{
-        $(".dscrptn8").addClass("present")
-        }
-        $(".saveBtn").on("click", function()   {
-        localStorage.setItem(JSON.stringify(hour.textContent), JSON.stringify(description.value))
-        console.log(description.value);
-        console.log(hour.textContent)
-        console.log(typeof(hour))
+
+        $(".Btn0").on("click", function()   {
+        localStorage.setItem($(".hr0").text(), JSON.stringify($(".dscrptn0").val()))
 });
 
 }
+
+$("body").on("click", ".saveBtn", function() {
+    var ths = $(this).parent()
+    console.log(ths.attr("id"))
+    localStorage.setItem(ths.attr("id"), JSON.stringify($(ths.children().eq(1)).val()))
+})
+
 var description = JSON.parse(localStorage.getItem("hello"))
+var startofmyvariables = localStorage.getItem("myhomework") || ""
+startofmyvariables.split()
+
+// expected outcome 5
+
 initial()
